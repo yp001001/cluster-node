@@ -1,0 +1,53 @@
+syntax = "proto2";
+
+package com.dfs.common.model.namenode;
+
+//option java_package="com.dfs.common.model.namenode";
+
+message RequestVoteRequest {
+  optional  string peer_id = 1;
+  optional  int64 term = 2;
+  optional  bool pre_vote = 3;
+};
+
+message RequestVoteResponse {
+  optional  string peer_id = 1;
+  optional  bool grant = 2;
+  optional  int64 term = 3;
+  optional  int64 selfTerm = 4;
+  optional  bool status = 5;
+};
+
+message FormalVoteRequest{
+  optional  string peer_id = 1;
+  optional  int64 term = 2;
+  optional  string serverId = 3;
+}
+
+message FormalVoteResponse{
+  optional  int64 term = 1;
+  optional  bool granted = 2;
+  optional  bool status = 3;
+  optional  string peer_id = 4;
+}
+
+message HeartbeatRequest{
+  required string peer_id = 1;
+  required int64 term = 2;
+}
+
+message MasterRequest{
+  required string peer_id = 1;
+  required int64 term = 2;
+}
+
+message AppendEntriesRequest {
+  required string peer_id = 3;
+  required int64 term = 4;
+};
+
+message AppendEntriesResponse {
+  required int64 term = 1;
+  required bool success = 2;
+  required string peer_id = 3;
+};
